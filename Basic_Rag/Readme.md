@@ -1,96 +1,71 @@
-# RAG-Explorer: Advanced Retrieval Augmented Generation Projects
+# Basic RAG Implementation
 
-Welcome to RAG-Explorer, a comprehensive repository showcasing various implementations of Retrieval Augmented Generation (RAG) systems, from basic to advanced.
+## Overview
 
-## Repository Overview
+This is a simple implementation of Retrieval Augmented Generation (RAG) using Ollama with local language models. The system demonstrates the core concepts of RAG by:
 
-This repository serves as a learning resource and reference implementation for different RAG architectures, techniques, and use cases. I'll be continuously adding new RAG projects as I explore this fascinating intersection of information retrieval and generative AI.
+1. Loading a knowledge base of cat facts
+2. Creating embeddings for each line of text
+3. Searching for the most relevant facts based on semantic similarity
+4. Using the retrieved information to generate accurate responses
 
-## Current Projects
+![Basic RAG Architecture](../images/rag_architecture.svg)
 
-### 1. Basic RAG Implementation (Current)
+## How It Works
 
-A foundational RAG system using Ollama with local language models:
+The implementation follows these steps:
 
-- **Features:**
-  - Vector database with semantic search capabilities
-  - Embeddings using CompendiumLabs' embedding model
-  - Cosine similarity for retrieval
-  - Generation using Llama 3.2 (1B Instruct)
-  - Simple but effective demonstration of RAG concepts
+1. **Data Loading**: Text data is loaded from `data.txt`, with each line treated as a separate document chunk
+2. **Embedding Generation**: Each chunk is embedded using the CompendiumLabs model through Ollama
+3. **Vector Database Creation**: The embeddings and their corresponding text chunks are stored in memory
+4. **Query Processing**: 
+   - When a user asks a question, the query is embedded using the same model
+   - Cosine similarity is calculated between the query embedding and all stored embeddings
+   - The top N most similar chunks are retrieved
+5. **Response Generation**: The retrieved chunks are used as context for the LLM to generate a relevant response
 
-- **Technology stack:**
-  - Python
-  - Ollama for local model inference
-  - CompendiumLabs embeddings
-  - Llama 3.2 for text generation
+## Code Explanation
 
-- **Sample dataset:** Collection of cat facts to demonstrate knowledge retrieval
+The `basic-rag.py` script:
+- Uses Ollama for both embeddings and text generation
+- Creates a simple in-memory vector database (the `VECTOR_DB` variable)
+- Implements cosine similarity for semantic search
+- Constructs a well-formed prompt with retrieved context for the LLM
 
-## Upcoming Projects
+## Usage
 
-I'm planning to expand this repository with the following RAG implementations:
+To use this implementation:
 
-1. **Hybrid RAG Pipeline**
-   - Combining keyword search and semantic search
-   - Implementing re-ranking techniques
-   - Adding metadata filtering
+```bash
+python basic-rag.py
+```
 
-2. **RAG with Document Chunking Strategies**
-   - Various text chunking approaches
-   - Overlapping chunks for better context preservation
-   - Evaluating different chunking strategies
+When prompted, ask a question about cats. The system will:
+1. Retrieve the most relevant cat facts from the knowledge base
+2. Show you the retrieved facts and their similarity scores
+3. Generate a response based only on the retrieved information
 
-3. **Multi-Vector RAG**
-   - Storing multiple embeddings per document
-   - Parent-child relationships between chunks
-   - Hierarchical retrieval systems
+## Models Used
 
-4. **RAG with Advanced Context Management**
-   - Dynamic context window handling
-   - Context compression techniques
-   - Managing retrieval for long documents
+- **Embedding Model**: `hf.co/CompendiumLabs/bge-base-en-v1.5-gguf`
+- **Language Model**: `hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF`
 
-5. **Self-Query RAG**
-   - Query decomposition
-   - Query transformation
-   - Multi-step retrieval processes
+## Requirements
 
-6. **Fine-tuned RAG System**
-   - Custom embedding models
-   - Domain-specific knowledge bases
-   - Optimizing for specific use cases
+- Python 3.6+
+- Ollama (locally installed)
 
-## Getting Started
+## Limitations and Future Improvements
 
-Each project folder contains:
-- Complete source code
-- README with explanations and usage instructions
-- Requirements file for dependencies
-- Sample data (when applicable)
+This basic implementation has several limitations:
 
-To run the basic RAG implementation:
+1. Uses a simple in-memory vector database (not suitable for large datasets)
+2. No chunking strategy (each line is treated as a separate document)
+3. No preprocessing or cleaning of text
+4. Limited to the cat facts dataset
 
-1. Ensure you have Ollama installed
-2. Clone this repository
-3. Navigate to the basic-rag folder
-4. Run `python basic-rag.py`
-
-## Contribution
-
-Feel free to contribute to this repository by:
-- Suggesting improvements to existing implementations
-- Recommending new RAG techniques to explore
-- Sharing your own RAG projects or use cases
-
-## Resources
-
-Interested in learning more about RAG? Check out these resources:
-- [LangChain RAG documentation](https://python.langchain.com/docs/modules/data_connection/)
-- [LlamaIndex RAG guide](https://docs.llamaindex.ai/en/stable/getting_started/concepts.html)
-- [Haystack RAG pipelines](https://haystack.deepset.ai/tutorials/25_rag)
-- ["Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" paper](https://arxiv.org/abs/2005.11401)
-
-## License
-
-MIT License
+Future improvements could include:
+- Adding text preprocessing and cleaning
+- Implementing different chunking strategies
+- Using a persistent vector database
+- Adding support for different file types
