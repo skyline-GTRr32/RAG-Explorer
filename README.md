@@ -27,7 +27,7 @@ A foundational RAG system using Ollama with local language models:
 
 - **Sample dataset:** Collection of cat facts to demonstrate knowledge retrieval
 
-![Basic RAG Architecture](images/rag_architecture.svg)
+![Basic RAG Architecture](images/Rag6.png)
 *Architecture of the basic RAG implementation*
 
 ## Upcoming Projects
