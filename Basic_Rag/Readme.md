@@ -9,7 +9,7 @@ This is a simple implementation of Retrieval Augmented Generation (RAG) using Ol
 3. Searching for the most relevant facts based on semantic similarity
 4. Using the retrieved information to generate accurate responses
 
-![Basic RAG Architecture](../images/rag_architecture.svg)
+![Basic RAG Architecture](../images/Rag6.png)
 
 ## How It Works
 
