@@ -48,12 +48,29 @@ When prompted, ask a question about cats. The system will:
 ## Models Used
 
 - **Embedding Model**: `hf.co/CompendiumLabs/bge-base-en-v1.5-gguf`
+  - [Model Link](https://huggingface.co/CompendiumLabs/bge-base-en-v1.5-gguf)
+  - Can be pulled with: `ollama pull hf.co/CompendiumLabs/bge-base-en-v1.5-gguf`
+
 - **Language Model**: `hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF`
+  - [Model Link](https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF)
+  - Can be pulled with: `ollama pull hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF`
 
 ## Requirements
 
-- Python 3.6+
-- Ollama (locally installed)
+- Python 3.8+
+- Ollama 0.1.22
+- Ollama service installed locally ([Ollama website](https://ollama.ai))
+
+## Installation
+
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Pull required models
+ollama pull hf.co/CompendiumLabs/bge-base-en-v1.5-gguf
+ollama pull hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF
+```
 
 ## Limitations and Future Improvements
 
