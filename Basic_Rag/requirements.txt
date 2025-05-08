@@ -1,0 +1,5 @@
+# Basic RAG Requirements
+# Python 3.8+ recommended
+
+# Ollama Python client
+ollama>=0.1.22
